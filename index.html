@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickCart - Optimization and Events</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top-bar">
+    <h1>QuickCart</h1>
+    <p>Performance optimization and DOM events</p>
+  </header>
+
+  <main class="page">
+
+    <section class="card">
+      <h2>1. Debounced search</h2>
+      <p class="hint">The search runs only after you stop typing for 500 ms.</p>
+      <input type="text" id="searchInput" placeholder="Search products...">
+      <p id="searchResult" class="output">Start typing to search.</p>
+      <p id="searchStats" class="stats">Keystrokes: 0 | Searches run: 0</p>
+    </section>
+
+    <section class="card">
+      <h2>2. Throttled scroll</h2>
+      <p class="hint">Scroll the page. The handler runs at most once every 1000 ms.</p>
+      <p id="scrollStats" class="stats">Scroll events: 0 | Handler runs: 0</p>
+    </section>
+
+    <section class="card">
+      <h2>3. Memoized discount</h2>
+      <div class="row">
+        <input type="number" id="priceInput" value="5000" min="0">
+        <input type="number" id="percentInput" value="10" min="0" max="100">
+        <button id="discountBtn" class="btn">Calculate</button>
+      </div>
+      <p id="discountResult" class="output">Press calculate. Repeat with the same numbers to see the cache.</p>
+    </section>
+
+    <section class="card">
+      <h2>4a. Event bubbling</h2>
+      <p class="hint">Click a button. The list handler also runs because the event bubbles up.</p>
+      <label class="check">
+        <input type="checkbox" id="stopCheck"> Stop propagation
+      </label>
+      <ul id="bubbleList" class="product-list">
+        <li>Laptop <button class="btn-small">Remove</button></li>
+        <li>Mouse <button class="btn-small">Remove</button></li>
+        <li>Keyboard <button class="btn-small">Remove</button></li>
+      </ul>
+      <div id="bubbleLog" class="log"></div>
+    </section>
+
+    <section class="card">
+      <h2>4b. Event delegation</h2>
+      <p class="hint">One listener on the list removes any product, even ones added later.</p>
+      <button id="addProductBtn" class="btn">Add product</button>
+      <ul id="productList" class="product-list">
+        <li>Laptop <button class="btn-small remove-btn">Remove</button></li>
+        <li>Mouse <button class="btn-small remove-btn">Remove</button></li>
+        <li>Keyboard <button class="btn-small remove-btn">Remove</button></li>
+      </ul>
+      <p id="delegationMessage" class="output">Nothing removed yet.</p>
+    </section>
+
+    <div class="spacer">Keep scrolling to test the throttle</div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
